@@ -28,4 +28,11 @@ public class AnimalController : ControllerBase
         var affectedCount = _animalService.CreateAnimal(animal);
         return StatusCode(StatusCodes.Status201Created);
     }
+
+    [HttpPut("{IdAnimal:int}")]
+    public IActionResult UpdateAnimal(int IdAnimal, Animal animal)
+    {
+        var affectedCount = _animalService.UpdateAnimal(IdAnimal, animal);
+        return NoContent();
+    }
 }

@@ -28,9 +28,9 @@ public class AnimalService : IAnimalService
         throw new NotImplementedException();
     }
 
-    public int UpdateAnimal(Animal animal)
+    public int UpdateAnimal(int IdAnimal, Animal animal)
     {
-        throw new NotImplementedException();
+        return _animalRepository.UpdateAnimal(IdAnimal, animal);
     }
 
     public int DeleteAnimal(int idAnimal)

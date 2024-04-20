@@ -61,9 +61,24 @@ public class AnimalRepository : IAnimalRepository
         throw new NotImplementedException();
     }
 
-    public int UpdateAnimal(Animal animal)
+    public int UpdateAnimal(int IdAnimal, Animal animal)
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        connection.Open();
+
+        using var cmd = new SqlCommand();
+        cmd.Connection = connection;
+        cmd.CommandText =
+            "UPDATE Animal SET Name=@Name, Description=@Description, Category=@Category, Area=@Area WHERE IdAnimal=@IdAnimal";
+        cmd.Parameters.AddWithValue("@Name", animal.Name);
+        cmd.Parameters.AddWithValue("@Description", animal.Description);
+        cmd.Parameters.AddWithValue("@Category", animal.Category);
+        cmd.Parameters.AddWithValue("@Area", animal.Area);
+        cmd.Parameters.AddWithValue("@IdAnimal", IdAnimal);
+
+        var affectedCount = cmd.ExecuteNonQuery();
+        return affectedCount;
+
     }
 
     public int DeleteAnimal(int idAnimal)
