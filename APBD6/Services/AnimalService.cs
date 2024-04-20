@@ -20,7 +20,7 @@ public class AnimalService : IAnimalService
 
     public int CreateAnimal(Animal animal)
     {
-        throw new NotImplementedException();
+        return _animalRepository.CreateAnimal(animal);
     }
 
     public Animal? GetAnimal(int idAnimal)

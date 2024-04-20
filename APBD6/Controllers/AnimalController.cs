@@ -22,9 +22,10 @@ public class AnimalController : ControllerBase
         return Ok(animals);
     }
 
-    // [HttpPost]
-    // public IActionResult CreateAnimal(Animal animal)
-    // {
-    //     
-    // }
+    [HttpPost]
+    public IActionResult CreateAnimal(Animal animal)
+    {
+        var affectedCount = _animalService.CreateAnimal(animal);
+        return StatusCode(StatusCodes.Status201Created);
+    }
 }
