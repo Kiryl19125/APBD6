@@ -12,14 +12,14 @@ public class AnimalRepository : IAnimalRepository
         _configuration = configuration;
     }
 
-    public IEnumerable<Animal> GetAnimals()
+    public IEnumerable<Animal> GetAnimals(string orderBy = "Name")
     {
         using var connection = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
         connection.Open();
 
-        using var cmd = new SqlCommand();
-        cmd.Connection = connection;
-        cmd.CommandText = "SELECT * FROM Animal";
+        using var cmd = new SqlCommand($"SELECT * FROM Animal ORDER BY {orderBy}", connection);
+        // cmd.Connection = connection;
+        // cmd.CommandText = "SELECT * FROM Animal ORDER BY @orderBy";
         // cmd.Parameters.AddWithValue("@orderBy", orderBy);
 
         var dr = cmd.ExecuteReader();
