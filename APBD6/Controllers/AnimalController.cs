@@ -35,4 +35,11 @@ public class AnimalController : ControllerBase
         var affectedCount = _animalService.UpdateAnimal(IdAnimal, animal);
         return NoContent();
     }
+
+    [HttpDelete("{IdAnimal:int}")]
+    public IActionResult DeleteAnimal(int IdAnimal)
+    {
+        var affectedCount = _animalService.DeleteAnimal(IdAnimal);
+        return NoContent();
+    }
 }

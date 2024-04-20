@@ -35,6 +35,6 @@ public class AnimalService : IAnimalService
 
     public int DeleteAnimal(int idAnimal)
     {
-        throw new NotImplementedException();
+        return _animalRepository.DeleteAnimal(idAnimal);
     }
 }
